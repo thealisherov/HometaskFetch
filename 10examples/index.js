@@ -157,52 +157,100 @@
 // }
 // display()
 
-let baseURL = "https://dummyjson.com/products";
+// let baseURL = "https://dummyjson.com/products";
 
-const productTitle = () => {
-  return fetch(baseURL)
-    .then((response) => {
-      if (response) {
-        return response.json();
-      } else throw new Error("Ma'lumotlarni yuklashda xatoilik");
-    })
-    .then((data) => {
-      data.products.forEach((product) => {
-        setTimeout(() => {
-          console.log(product.title);
-        }, 2000);
-      });
-    })
-    .catch((Error) => {
-      setTimeout(() => {
-        console.log(Error);
-      }, 3000);
-    });
-};
+// const productTitle = () => {
+//   return fetch(baseURL)
+//     .then((response) => {
+//       if (response) {
+//         return response.json();
+//       } else throw new Error("Ma'lumotlarni yuklashda xatoilik");
+//     })
+//     .then((data) => {
+//       data.products.forEach((product) => {
+//         setTimeout(() => {
+//           console.log(product.title);
+//         }, 2000);
+//       });
+//     })
+//     .catch((Error) => {
+//       setTimeout(() => {
+//         console.log(Error);
+//       }, 3000);
+//     });
+// };
 
-const productID = () => {
-  return fetch(baseURL)
-    .then((response) => {
-      if (response) {
-        return response.json();
-      } else throw new Error("Ma'lumotlarni yuklashda xatoilik");
-    })
-    .then((data) => {
-      data.products.forEach((product) => {
-        setTimeout(() => {
-          console.log(product.id);
-        }, 2000);
-      });
-    })
-    .catch((Error) => {
-      setTimeout(() => {
-        console.log(Error);
-      }, 3000);
-    });
-};
-async function displayData() {
-  await productTitle();
-  await productID();
-}
+// const productID = () => {
+//   return fetch(baseURL)
+//     .then((response) => {
+//       if (response) {
+//         return response.json();
+//       } else throw new Error("Ma'lumotlarni yuklashda xatoilik");
+//     })
+//     .then((data) => {
+//       data.products.forEach((product) => {
+//         setTimeout(() => {
+//           console.log(product.id);
+//         }, 2000);
+//       });
+//     })
+//     .catch((Error) => {
+//       setTimeout(() => {
+//         console.log(Error);
+//       }, 3000);
+//     });
+// };
+// async function displayData() {
+//   await productTitle();
+//   await productID();
+// }
 
-displayData();
+// displayData();
+
+
+// promise methods
+
+// promise all
+let username = new Promise((resolve, reject) => {
+  setTimeout(() => {
+    let name = "@jhon123";
+    // Tasodifiy xatoni tekshiradigan misol
+    if (!name) {
+      reject("Something went wrong");
+    } else {
+      resolve(name);
+    }
+  }, 2000);
+});
+
+let userID = new Promise((resolve, reject) => {
+  setTimeout(() => {
+    let id = "123";
+    if (!id) {
+      reject("Something went wrong");
+    } else {
+      resolve(id);
+    }
+  }, 2000);
+});
+
+let status = new Promise((resolve, reject) => {
+  setTimeout(() => {
+    let stat = "active";
+    if (!stat) {
+      reject("Something went wrong");
+    } else {
+      resolve(stat);
+    }
+  }, 2000);
+});
+
+let all = Promise.all([username, userID, status])
+  .then(([name, id, stat]) => {
+    console.log("Username:", name);
+    console.log("User ID:", id);
+    console.log("Status:", stat);
+  })
+  .catch((error) => {
+    console.log("Xatolik:", error);
+  });
